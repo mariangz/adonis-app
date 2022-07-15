@@ -21,6 +21,17 @@ export default class AuthController {
     })
   }
   public async login({ request }: HttpContextContract) {
-    return request.all()
+    const loginSchema = schema.create({
+      email: schema.string({}, [rules.email()]),
+      password: schema.string(),
+    })
+
+    const loginValidation = await request.validate({
+      schema: loginSchema,
+      messages: {
+        'email.required': 'Email is required',
+        'password.required': 'Password is required',
+      },
+    })
   }
 }
