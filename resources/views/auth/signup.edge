@@ -11,7 +11,7 @@
           <label for="name" class="mt-1.5 text-gray-500 font-semibold">Name</label>
           <input type="text" name="name" id="name" class="block border-gray-200 border-2 rounded-md w-full mt-2 p-1.5">
           @if(flashMessages.has('errors.name'))
-          <span class="text-xs text-red-500 text-xs">{{ flashMessages.get('errors.name') }}</span>
+          <span class="text-xs text-red-500">{{ flashMessages.get('errors.name') }}</span>
           @end
         </div>
         <div class="mt-5">
@@ -19,7 +19,7 @@
           <input type="email" name="email" id="email"
             class="block border-gray-200 border-2 rounded-md w-full mt-2 p-1.5">
           @if(flashMessages.has('errors.email'))
-          <span class="text-xs text-red-500 text-xs">{{ flashMessages.get('errors.email') }}</span>
+          <span class="text-xs text-red-500">{{ flashMessages.get('errors.email') }}</span>
           @end
         </div>
         <div class="mt-5">
@@ -27,7 +27,7 @@
           <input type="password" name="password" id="password"
             class="block border-gray-200 border-2 rounded-md w-full mt-2 p-1.5">
           @if(flashMessages.has('errors.password'))
-          <span class="text-xs text-red-500 text-xs">{{ flashMessages.get('errors.password') }}</span>
+          <span class="text-xs text-red-500">{{ flashMessages.get('errors.password') }}</span>
           @end
         </div>
         <div class="mt-5">
@@ -35,7 +35,7 @@
           <input type="password" name="confirmPassword" id="confirmPassword"
             class="block border-gray-200 border-2 rounded-md w-full mt-2 p-1.5">
           @if(flashMessages.has('errors.confirmPassword'))
-          <span class="text-xs text-red-500 text-xs">{{ flashMessages.get('errors.confirmPassword') }}</span>
+          <span class="text-xs text-red-500">{{ flashMessages.get('errors.confirmPassword') }}</span>
           @end
         </div>
         <div class="mt-7"><button type="submit" class="bg-violet-600 text-white rounded-md w-full py-3">Sign Up</button>
