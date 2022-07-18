@@ -1,50 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
+@layout('layouts/main')
+@set('title', 'Sign Up')
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Sign Up</title>
-</head>
-
-<body>
-  <div>
-    <form action="/signup" method="POST">
+@section('body')
+<main>
+  <div class="max-w-md  mx-auto mt-20">
+    <form action="/signup" method="POST" class="p-8">
       <div>
-        <h3>Sign Up</h3>
-        <div>
-          <label for="name">Name</label>
-          <input type="text" name="name" id="name">
+        <h3 class="text-2xl font-semibold text-cente text-gray-700">Sign Up</h3>
+        <div class="mt-10">
+          <label for="name" class="mt-1.5 text-gray-500 font-semibold">Name</label>
+          <input type="text" name="name" id="name" class="block border-gray-200 border-2 rounded-md w-full mt-2 p-1.5">
           @if(flashMessages.has('errors.name'))
-          <span>{{ flashMessages.get('errors.name') }}</span>
+          <span class="text-xs text-red-500">{{ flashMessages.get('errors.name') }}</span>
           @end
         </div>
-        <div>
-          <label for="email">Email</label>
-          <input type="email" name="email" id="email">
+        <div class="mt-5">
+          <label for="email" class="mt-1.5 text-gray-500 font-semibold">Email</label>
+          <input type="email" name="email" id="email"
+            class="block border-gray-200 border-2 rounded-md w-full mt-2 p-1.5">
           @if(flashMessages.has('errors.email'))
-          <span>{{ flashMessages.get('errors.email') }}</span>
+          <span class="text-xs text-red-500">{{ flashMessages.get('errors.email') }}</span>
           @end
         </div>
-        <div>
-          <label for="password">Password</label>
-          <input type="password" name="password" id="password">
+        <div class="mt-5">
+          <label for="password" class="mt-1.5 text-gray-500 font-semibold">Password</label>
+          <input type="password" name="password" id="password"
+            class="block border-gray-200 border-2 rounded-md w-full mt-2 p-1.5">
           @if(flashMessages.has('errors.password'))
-          <span>{{ flashMessages.get('errors.password') }}</span>
+          <span class="text-xs text-red-500">{{ flashMessages.get('errors.password') }}</span>
           @end
         </div>
-        <div>
-          <label for="confirmPassword">Confirm Password</label>
-          <input type="password" name="confirmPassword" id="confirmPassword">
+        <div class="mt-5">
+          <label for="confirmPassword" class="mt-1.5 text-gray-500 font-semibold">Confirm Password</label>
+          <input type="password" name="confirmPassword" id="confirmPassword"
+            class="block border-gray-200 border-2 rounded-md w-full mt-2 p-1.5">
           @if(flashMessages.has('errors.confirmPassword'))
-          <span>{{ flashMessages.get('errors.confirmPassword') }}</span>
+          <span class="text-xs text-red-500">{{ flashMessages.get('errors.confirmPassword') }}</span>
           @end
         </div>
-        <div><button type="submit">Sign Up</button></div>
+        <div class="mt-7">
+          <button type="submit" class="bg-violet-600 text-white rounded-md w-full py-3">Sign Up</button>
+        </div>
       </div>
     </form>
   </div>
-</body>
-
-</html>
+</main>
+@end
