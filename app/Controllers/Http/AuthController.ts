@@ -5,8 +5,8 @@ export default class AuthController {
   public async signup({ request }: HttpContextContract) {
     const signupSchema = schema.create({
       name: schema.string(),
-      email: schema.string({}, [rules.email()]),
-      password: schema.string(),
+      email: schema.string({}, [rules.email(), rules.unique({ table: 'users', column: 'email' })]),
+      password: schema.string({}, [rules.minLength(6)]),
       confirmPassword: schema.string(),
     })
 
@@ -15,10 +15,14 @@ export default class AuthController {
       messages: {
         'name.required': 'Name is required',
         'email.required': 'Email is required',
+        'email.unique': 'Email is already in use',
         'password.required': 'Password is required',
+        'password.minLength': 'Min 6 characters are required',
         'confirmPassword.required': 'Password Confirmation is required',
       },
     })
+    console.log(signupValidation)
+    return request.all()
   }
   public async login({ request }: HttpContextContract) {
     const loginSchema = schema.create({
