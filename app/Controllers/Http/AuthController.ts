@@ -1,8 +1,9 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { schema, rules } from '@ioc:Adonis/Core/Validator'
+import User from 'App/Models/User'
 
 export default class AuthController {
-  public async signup({ request }: HttpContextContract) {
+  public async signup({ request, response }: HttpContextContract) {
     const signupSchema = schema.create({
       name: schema.string(),
       email: schema.string({}, [rules.email(), rules.unique({ table: 'users', column: 'email' })]),
@@ -21,8 +22,17 @@ export default class AuthController {
         'confirmPassword.required': 'Password Confirmation is required',
       },
     })
-    console.log(signupValidation)
-    return request.all()
+
+    const user = new User()
+    await user
+      .fill({
+        name: signupValidation.name,
+        email: signupValidation.email,
+        password: signupValidation.password,
+      })
+      .save()
+
+    response.redirect('/')
   }
   public async login({ request }: HttpContextContract) {
     const loginSchema = schema.create({
