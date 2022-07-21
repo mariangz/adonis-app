@@ -34,7 +34,7 @@ export default class AuthController {
 
     response.redirect('/')
   }
-  public async login({ request }: HttpContextContract) {
+  public async login({ auth, request, response }: HttpContextContract) {
     const loginSchema = schema.create({
       email: schema.string({}, [rules.email()]),
       password: schema.string(),
@@ -47,5 +47,16 @@ export default class AuthController {
         'password.required': 'Password is required',
       },
     })
+
+    const user = await User.findByOrFail('email', loginValidation.email)
+    const email = request.input('email')
+    const password = request.input('password')
+
+    try {
+      await auth.use('web').attempt(email, password)
+      response.redirect('/')
+    } catch {
+      return response.badRequest('Invalid credentials')
+    }
   }
 }
